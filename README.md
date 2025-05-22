@@ -1,6 +1,6 @@
 # 협업일지
-![header](https://capsule-render.vercel.app/api?type=transparent)
-![header](https://capsule-render.vercel.app/api?text=Team-Epoch-4)
+![header](https://capsule-render.vercel.app/api?type=transparent&text=Team-Epoch-4&color=gradient)
+
 
 주대성
 https://www.notion.so/1fb32d889f88804fac1ddc96ee285e3f?v=1fb32d889f8881fba7bf000ca2971b03
