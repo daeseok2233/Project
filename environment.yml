@@ -1,4 +1,4 @@
-name: base
+name: ai02-env-04
 channels:
   - defaults
   - https://repo.anaconda.com/pkgs/main
