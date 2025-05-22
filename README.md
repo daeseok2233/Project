@@ -1,5 +1,5 @@
 # 협업일지
-![header](https://capsule-render.vercel.app/api?type=slice)
+![header](https://capsule-render.vercel.app/api?type=transparent)
 
 
 주대성
