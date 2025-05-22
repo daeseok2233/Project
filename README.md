@@ -14,6 +14,5 @@ https://www.notion.so/1b68dd9e8ab380aa8617ef34e82d4e52
 정민영
 https://www.notion.so/Daily-1fb2d05d9c4680ab9546cae7f25f0745
 
-
 진다희
 https://www.notion.so/250522-1fb8339019048090ac41eab994e9a275?pvs=4
