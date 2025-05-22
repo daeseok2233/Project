@@ -1,4 +1,7 @@
 # 협업일지
+![header](https://capsule-render.vercel.app/api?type=slice)
+
+
 주대성
 https://www.notion.so/1fb32d889f88804fac1ddc96ee285e3f?v=1fb32d889f8881fba7bf000ca2971b03
 
