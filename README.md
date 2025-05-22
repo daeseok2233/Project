@@ -1,6 +1,6 @@
 # 협업일지
 주대성
-
+https://www.notion.so/1fb32d889f88804fac1ddc96ee285e3f?v=1fb32d889f8881fba7bf000ca2971b03
 
 손주희
 https://smart-nightshade-63d.notion.site/1fb46e2fcad880099f15cfa3e7e9ce83
