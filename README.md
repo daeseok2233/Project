@@ -1,5 +1,5 @@
 # 협업일지
-![header](https://capsule-render.vercel.app/api?type=transparent&text=Team-Epoch-4&color=random)
+![header](https://capsule-render.vercel.app/api?type=transparent&text=Team-Epoch-4&color=#00AB78)
 
 
 주대성
