@@ -1,1 +1,39 @@
 data/
+=======
+# Python 관련
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints
+
+# 환경 관련
+.env
+.venv
+env/
+venv/
+*.egg-info/
+
+# VS Code
+.vscode/
+
+# Jupyter notebook checkpoint
+.ipynb_checkpoints/
+
+# 결과 이미지 제외하고 모든 png 무시
+*.png
+images/
+
+# Checkpoint 및 로그 파일
+checkpoints/
+checkpoints_*/
+*.pth
+
+# 로그 및 캐시
+wandb/
+*.log
+*.tmp
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
