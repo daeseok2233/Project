@@ -97,10 +97,10 @@
 
 | 모델     | 링크                                         |
 |----------|---------------------------------------------|
-| YOLOv8   | Ultralytics YOLOv8 공식문서                 |
+| YOLOv8   | [Ultralytics YOLOv8 공식문서](https://docs.ultralytics.com/ko/models/yolov8/)|
 | Faster R-CNN | [arXiv:1506.01497](https://arxiv.org/abs/1506.01497) |
-| YOLOv9   | [arXiv:2304.00501](https://arxiv.org/abs/2304.00501)    |
-| YOLOv12  | [OpenYOLO GitHub](https://github.com/OpenYOLO/OpenYOLO) |
+| YOLOv9   | [Ultralytics YOLOv9 공식문서](https://arxiv.org/abs/2304.00501)    |
+| YOLOv12  | [Ultralytics YOLOv12 공식문서](https://github.com/OpenYOLO/OpenYOLO) |
 | Tesseract OCR | [Tesseract GitHub](https://github.com/tesseract-ocr/tesseract) |
 | ResNet   | [arXiv:1512.03385](https://arxiv.org/abs/1512.03385)    |
 
