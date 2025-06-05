@@ -1,0 +1,24 @@
+project:
+  wandb: false
+  name: "pill-detection"
+  run_name: "fasterrcnn-v1"
+
+training:
+  epochs: 50
+  start_epoch: 0
+  batch_size: 4
+  learning_rate: 0.0002
+  weight_decay: 0.0001
+  checkpoint_dir: "checkpoints_3"
+
+data:
+  train_csv: "data/train_df.csv"
+  val_csv: "data/val_df.csv"
+  image_dir: "images"
+
+model:
+  num_classes: 74  # 배경 + 73
+
+augmentation:
+  image_size: 640
+  use_augmentation: true
