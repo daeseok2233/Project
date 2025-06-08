@@ -10,13 +10,14 @@ from ultralytics.utils.metrics import bbox_iou
 import random
 
 # ✅ 경로 설정
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PILL_LIST_PATH = os.path.join(BASE_DIR, "pill_list2.txt")
-IMAGE_DIR = os.path.join(BASE_DIR, "yolo_dataset", "images", "train")
-LABEL_DIR = os.path.join(BASE_DIR, "yolo_dataset", "labels", "train")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, os.pardir))
+PILL_LIST_PATH = os.path.join(BASE_DIR, "configs", "pill_list.txt")
+IMAGE_DIR = os.path.join(BASE_DIR, "yolo_dataset", "images", "val")
+LABEL_DIR = os.path.join(BASE_DIR, "yolo_dataset", "labels", "val")
 MODEL_M_PATH = os.path.join(BASE_DIR, "runs", "yolov11m", "exp", "weights", "best.pt")
 MODEL_L_PATH = os.path.join(BASE_DIR, "runs", "yolov11l", "exp", "weights", "best.pt")
-SAVE_DIR = os.path.join(BASE_DIR, "ensemble_wrong_outputs")
+SAVE_DIR = os.path.join(BASE_DIR, "results", "ensemble_wrong_outputs")
 os.makedirs(SAVE_DIR, exist_ok=True)
 
 # ✅ 한글 폰트 설정

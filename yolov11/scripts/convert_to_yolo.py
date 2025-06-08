@@ -98,7 +98,7 @@ DATA_DIR = PROJECT_DIR / "data"
 # ✅ 매핑 로드
 category_to_class = load_category_to_class_map(MAPPING_PATH)
 
-# ✅ 데이터셋 변환 설정 (train: ADD, ORIGINAL / val: VAL)
+# ✅ 데이터셋 변환 설정 (train: ADD, ORIGINAL)
 datasets = [
     {
         "name": "ADD",
@@ -111,12 +111,6 @@ datasets = [
         "image_dir": DATA_DIR / "ORIGINAL" / "images",
         "json_dir": DATA_DIR / "ORIGINAL" / "annotations",
         "output_type": "train"
-    },
-    {
-        "name": "VAL",
-        "image_dir": DATA_DIR / "VAL" / "images",
-        "json_dir": DATA_DIR / "VAL" / "annotations",
-        "output_type": "val"
     }
 ]
 
