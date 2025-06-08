@@ -3,6 +3,7 @@ import json
 import cv2
 from pathlib import Path
 
+# ✅ category_id → class_id 매핑 로드
 def load_category_to_class_map(mapping_path):
     category_to_class = {}
     with open(mapping_path, 'r', encoding='utf-8') as f:
@@ -11,29 +12,27 @@ def load_category_to_class_map(mapping_path):
             category_to_class[category_id] = class_index
     return category_to_class
 
+# ✅ YOLO 형식 변환 함수
 def convert_dataset_to_yolo(image_dir, json_dir, output_image_dir, output_label_dir, category_to_class, target_size=640):
     os.makedirs(output_image_dir, exist_ok=True)
     os.makedirs(output_label_dir, exist_ok=True)
 
-    if not image_dir.exists():
-        print(f"❌ 이미지 폴더 없음: {image_dir}")
-        return
-    if not json_dir.exists():
-        print(f"❌ JSON 폴더 없음: {json_dir}")
+    if not image_dir.exists() or not json_dir.exists():
+        print(f"❌ 경로 없음: {image_dir if not image_dir.exists() else json_dir}")
         return
 
-    image_files = [f for f in os.listdir(image_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
-    print(f"\n📂 변환 시작: {image_dir} ({len(image_files)}장)")
+    image_files = sorted([f for f in os.listdir(image_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
+    print(f"\n📂 변환 시작: {image_dir.name} ({len(image_files)}장)")
 
     for img_file in image_files:
-        base_name = os.path.splitext(img_file)[0]
+        base_name = Path(img_file).stem
         json_file = base_name + ".json"
 
         img_path = image_dir / img_file
         json_path = json_dir / json_file
 
         if not json_path.exists():
-            print(f"❌ 매칭되는 JSON 없음: {json_file}")
+            print(f"⚠️ 매칭되는 JSON 없음: {json_file}")
             continue
 
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -67,16 +66,17 @@ def convert_dataset_to_yolo(image_dir, json_dir, output_image_dir, output_label_
             try:
                 category_id = int(ann['category_id'])
             except Exception as e:
-                print(f"❌ category_id 타입 에러: {ann.get('category_id')} in {json_file}")
+                print(f"❌ category_id 에러: {ann.get('category_id')} → {json_file}")
                 continue
 
             if category_id not in category_to_class:
-                print(f"⚠️ category_id {category_id} 매핑 누락: {json_file}")
+                print(f"⚠️ 매핑 누락 category_id {category_id} → {json_file}")
                 continue
 
             class_id = category_to_class[category_id]
             yolo_lines.append(f"{class_id} {x_center:.6f} {y_center:.6f} {w_norm:.6f} {h_norm:.6f}")
 
+        # 저장
         save_img_path = output_image_dir / img_file
         save_lbl_path = output_label_dir / (base_name + ".txt")
 
@@ -86,31 +86,37 @@ def convert_dataset_to_yolo(image_dir, json_dir, output_image_dir, output_label_
 
         print(f"✅ 변환 완료: {img_file}")
 
-# ✅ 기준 경로
-BASE_DIR = Path(__file__).resolve().parent       # → yolov11/
-PROJECT_DIR = BASE_DIR.parent                    # → Project/
-DATA_DIR = PROJECT_DIR / "data"                  # → Project/data/
-YOLO_OUT_DIR = BASE_DIR / "yolo_dataset"         # → yolov11/yolo_dataset/
-mapping_path = BASE_DIR / "class_to_category.txt"  # → yolov11/class_to_category.txt
+# ✅ 경로 설정
+SCRIPT_DIR = Path(__file__).resolve().parent          # yolov11/scripts
+BASE_DIR = SCRIPT_DIR.parent                          # yolov11/
+PROJECT_DIR = BASE_DIR.parent                         # Project/
+
+MAPPING_PATH = BASE_DIR / "configs" / "class_to_category.txt"
+YOLO_OUT_DIR = BASE_DIR / "yolo_dataset"
+DATA_DIR = PROJECT_DIR / "data"
 
 # ✅ 매핑 로드
-category_to_class = load_category_to_class_map(mapping_path)
+category_to_class = load_category_to_class_map(MAPPING_PATH)
 
-# ✅ 변환할 데이터셋 정의
+# ✅ 데이터셋 변환 설정 (train: ADD, ORIGINAL / val: VAL)
 datasets = [
     {
         "name": "ADD",
         "image_dir": DATA_DIR / "ADD" / "images",
         "json_dir": DATA_DIR / "ADD" / "annotations",
-        "output_image_dir": YOLO_OUT_DIR / "images" / "train",
-        "output_label_dir": YOLO_OUT_DIR / "labels" / "train"
+        "output_type": "train"
     },
     {
         "name": "ORIGINAL",
         "image_dir": DATA_DIR / "ORIGINAL" / "images",
         "json_dir": DATA_DIR / "ORIGINAL" / "annotations",
-        "output_image_dir": YOLO_OUT_DIR / "images" / "train",
-        "output_label_dir": YOLO_OUT_DIR / "labels" / "train"
+        "output_type": "train"
+    },
+    {
+        "name": "VAL",
+        "image_dir": DATA_DIR / "VAL" / "images",
+        "json_dir": DATA_DIR / "VAL" / "annotations",
+        "output_type": "val"
     }
 ]
 
@@ -120,7 +126,7 @@ for ds in datasets:
     convert_dataset_to_yolo(
         image_dir=ds["image_dir"],
         json_dir=ds["json_dir"],
-        output_image_dir=ds["output_image_dir"],
-        output_label_dir=ds["output_label_dir"],
+        output_image_dir=YOLO_OUT_DIR / "images" / ds["output_type"],
+        output_label_dir=YOLO_OUT_DIR / "labels" / ds["output_type"],
         category_to_class=category_to_class
     )

@@ -22,12 +22,17 @@ __pycache__/
 model/
 
 # ✅ 결과물 무시 (원하면 주석처리)
-results/plots/
-results/summary.csv
+ results/
+ results/summary.csv
+ results/plots/
 
-# ✅ 주피터 체크포인트
-.ipynb_checkpoints/
+# ✅ Python 캐시 및 임시파일
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.DS_Store
 
-# ✅ 가상환경
+# ✅ 가상환경 관련
 .venv/
 .env

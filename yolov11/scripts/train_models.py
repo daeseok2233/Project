@@ -1,8 +1,8 @@
 from pathlib import Path
 from ultralytics import YOLO
 
-# ✅ 기준 디렉토리: yolov11/
-BASE_DIR = Path(__file__).resolve().parent
+# ✅ BASE_DIR = yolov11/
+BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_DIR = BASE_DIR / "model"
 DATA_YAML = BASE_DIR / "yolo_dataset" / "data.yaml"
 RUNS_DIR = BASE_DIR / "runs"
@@ -33,7 +33,7 @@ for model_name, model_path in model_paths.items():
         epochs=EPOCHS,
         patience=PATIENCE,
         imgsz=640,
-        project=str(RUNS_DIR / model_name),
+        project=str(RUNS_DIR / model_name),  # ex: yolov11/runs/yolov11s
         name="exp",
         save=True
     )
