@@ -13,6 +13,7 @@
 
 chmod +x sml_eval_pipeline.sh   chmod +x augment_pipeline.sh
 
+
 🧪 파이프라인 1: sml_eval_pipeline.sh
 
 ✅ 목적
