@@ -42,6 +42,9 @@ python scripts/generate_collages.py
 echo "🎨 증강 및 YOLO 변환 시작..."
 python scripts/convert_with_aug.py
 
+# ✅ 9. 검증 데이터 split
+echo "검증 데이터 split..."
+python scripts/split_val.py
 
 # ✅ 9.모델 학습
 echo "🎨 모델 학습중..."
